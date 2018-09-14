@@ -1,0 +1,83 @@
+extends layout
+
+block style
+    style(type='text/css').
+        #appLogo {
+            width: auto;
+            height: auto;
+            margin: 0;
+            display: initial;            
+        }
+
+        #searchForm {
+            margin: 0 2%;           
+        }
+
+        #fix {
+            position: static;
+            height: 25%;
+        }
+
+        #guide {
+            display: block;
+            margin: 40% auto;
+            width: 50%;
+        }
+
+        #sortBy, #perPage {
+            visibility: hidden;
+            margin: 2%;
+            padding: 0 5%;
+        }
+
+block script
+    //- script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOJES7dS4BKe9gh_KNEanb3n5GfkkO8Sg&callback=initMap", async, defer)
+    script(type="text/javascript", src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOJES7dS4BKe9gh_KNEanb3n5GfkkO8Sg&callback=initMap", async, defer)
+
+block sidebar
+    div(class='sidebar')
+        div#fix
+            a(href='/')
+                img#appLogo(src='/img/traverise.png', alt='traverise logo')
+            form#searchForm(method='post', action='/search/places')
+                div(class='ui action input')
+                    input#searchInput(type='text', name='searchInput', placeholder='search places...', value=search, required) 
+                    select#searchType(class="ui compact selection dropdown" name="searchType")
+                        option(value='attraction') attraction
+                        option(value='food') food
+                    
+                    block form
+                        select#placeLimit(class="ui compact selection dropdown" name="placeLimit")
+                            option(value='25') 25
+                            option(value='50') 50
+                            option(value='75') 75
+                            option(value='100') 100
+                    button#searchBtn(class='ui button') Search
+            form#photoOption
+                select#sortBy(class="ui compact selection dropdown" name="photoSortBy" onchange='this.form.submit()')
+                    option(disabled, selected, value) --------  photo sort by  --------
+                    option(value='Most Recent') Most Recent
+                    option(value='Most Views') Most Views
+                select#perPage(class="ui compact selection dropdown" name="photoPerPage" onchange='this.form.submit()')
+                    option(value='25') 25
+                    option(value='50') 50
+                    option(value='75') 75
+                    option(value='100') 100
+        
+
+        block flickr
+            div#guide Click on a map marker for photos!
+
+block content
+    div#hiddenElement
+        p#hiddenPlaceData= JSON.stringify(data)
+        p#centerMap= JSON.stringify(centre_latlng)
+        p#requestedPlace= requestedPlace
+        p#selectedLimit= selected_limit
+        p#selectedType= type
+        p#ppp= photoperpage
+        p#pOpt= photoOption
+        div#flickrData= JSON.stringify(flickr_data)
+        div#flickrDataInfo= JSON.stringify(flickr_data_info)
+        div#foursquarePhotoData= JSON.stringify(fsPhoto)
+    div#map

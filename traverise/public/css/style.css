@@ -1,0 +1,83 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-size: 18px;
+}
+
+html, body {
+    height: 100%;
+}
+
+.ui.button {
+    background-color: #1676ba;
+    color: white;
+    font-weight: bolder;
+}
+
+#searchInput, #searchType, #placeLimit, #perPage, #sortBy {
+    border-color: #1676ba;
+}
+
+#map {
+    width: 60%;
+    height: 100%;
+}
+
+#hiddenElement, #showPhoto {
+    display: none;
+    /* visibility: hidden; */
+}
+
+#showPhoto {
+    overflow-y: scroll;    
+    width: 100%;
+    height: 75%;
+    display: flow-root;
+}
+
+#data {
+    height: auto;
+}
+
+#appLogo {
+    width: 20%;
+    height: 20%;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10%;
+}
+
+#searchForm {
+    width: 30%;
+    display: block;
+    margin: 0 auto;
+}
+
+.ui.card {
+    width: 40%;
+    display: inline-block;
+    margin: 5%;
+    word-wrap: break-word;
+}
+
+.ui.card:first-child {
+    margin: 5%;
+}
+
+.sidebar {
+    width: 40%;
+    height: 100%;
+    float: left;
+    overflow: hidden;
+}
+
+.ui.card>.content>.header:not(.ui), .ui.cards>.card>.content>.header:not(.ui) {
+    font-size: 18px;
+}
+
+#date {
+    font-size: 13px;
+}
